@@ -1,70 +1,175 @@
-# Getting Started with Create React App
+# Notes App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern note-taking application built with React that allows users to create, organize, and manage their personal notes with authentication and theme switching capabilities.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+### Core Functionality
+- **User Authentication**: Complete registration and login system
+- **Note Management**: Create, delete, archive, and unarchive notes
+- **Real-time Sync**: All data synchronized with RESTful API
+- **Protected Routes**: Notes accessible only to authenticated users
 
-### `npm start`
+### User Experience
+- **Theme Switcher**: Toggle between light and dark modes
+- **Responsive Design**: Optimized for desktop and mobile devices
+- **Loading Indicators**: Visual feedback for all async operations
+- **Form Validation**: Input validation with error messages
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Technical Features
+- **React Context**: State management for theme and authentication
+- **Custom Hooks**: Reusable logic for forms and API operations
+- **RESTful API Integration**: Dicoding Notes API integration
+- **Persistent Storage**: Theme and authentication state persistence
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technologies Used
 
-### `npm test`
+- **Frontend**: React 18, JavaScript (ES6+)
+- **State Management**: React Context API, useState, useEffect
+- **Styling**: CSS3 with CSS Variables for theming
+- **API**: RESTful API integration with fetch
+- **Build Tool**: Create React App
+- **Authentication**: JWT Token-based authentication
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn package manager
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Setup Instructions
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/notes-app.git
+   cd notes-app
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-### `npm run eject`
+3. **Start the development server**
+   ```bash
+   npm start
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. **Open your browser**
+   Navigate to `http://localhost:3000`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Usage
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Getting Started
+1. **Register**: Create a new account with name, email, and password
+2. **Login**: Sign in with your credentials
+3. **Create Notes**: Add new notes with title and content
+4. **Organize**: Archive important notes or delete unwanted ones
+5. **Customize**: Switch between light and dark themes
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### API Integration
+This app connects to the Dicoding Notes API:
+- **Base URL**: `https://notes-api.dicoding.dev/v1`
+- **Authentication**: Bearer Token
+- **Endpoints**: Users, Notes, Archive operations
 
-## Learn More
+## Project Structure
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+src/
+├── components/
+│   ├── Auth/
+│   │   ├── AuthPage.jsx
+│   │   ├── LoginForm.jsx
+│   │   └── RegisterForm.jsx
+│   ├── Common/
+│   │   ├── LoadingSpinner.jsx
+│   │   └── PrivateRoute.jsx
+│   ├── Layout/
+│   │   └── Header.jsx
+│   └── Notes/
+│       ├── AddNoteForm.jsx
+│       ├── NoteItem.jsx
+│       ├── NoteList.jsx
+│       └── NotesPage.jsx
+├── contexts/
+│   ├── AuthContext.js
+│   └── ThemeContext.js
+├── hooks/
+│   ├── useInput.js
+│   └── useNote.js
+├── styles/
+│   ├── components.css
+│   ├── index.css
+│   └── theme.css
+├── utils/
+│   └── network-data.js
+├── App.jsx
+└── index.js
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Key Components
 
-### Code Splitting
+### Custom Hooks
+- **useInput**: Manages form input state and handlers
+- **useNote**: Handles all note-related API operations
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Context Providers
+- **AuthContext**: User authentication state management
+- **ThemeContext**: Theme switching and persistence
 
-### Analyzing the Bundle Size
+### Protected Routes
+- **PrivateRoute**: Ensures only authenticated users can access notes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## API Documentation
 
-### Making a Progressive Web App
+### Authentication Endpoints
+- `POST /login` - User login
+- `POST /register` - User registration
+- `GET /users/me` - Get current user
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Notes Endpoints
+- `GET /notes` - Get active notes
+- `GET /notes/archived` - Get archived notes
+- `POST /notes` - Create new note
+- `POST /notes/:id/archive` - Archive note
+- `POST /notes/:id/unarchive` - Unarchive note
+- `DELETE /notes/:id` - Delete note
 
-### Advanced Configuration
+## Development
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Available Scripts
+- `npm start` - Run development server
+- `npm run build` - Build for production
+- `npm test` - Run tests
+- `npm run eject` - Eject from Create React App
 
-### Deployment
+### Code Style
+- Component naming: PascalCase for components, camelCase for functions
+- File structure: Organized by feature and functionality
+- CSS: BEM-like methodology with CSS variables
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Contributing
 
-### `npm run build` fails to minify
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Future Enhancements
+
+- [ ] Search functionality for notes
+- [ ] Categories and tags for notes
+- [ ] Rich text editor
+- [ ] Export notes to PDF/Markdown
+- [ ] Collaborative notes sharing
+- [ ] Offline support with PWA
+
+## License
+
+This project is created for educational purposes as part of Dicoding's React path.
+
+---
+
+**Built with ❤️ using React**
